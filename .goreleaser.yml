@@ -1,0 +1,35 @@
+version: 2
+project_name: sunflower-tasks
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - id: sunflower-tasks
+    main: ./
+    binary: sunflower-tasks
+    env: [CGO_ENABLED=0]
+    goos: [linux, darwin, windows]
+    goarch: [amd64, arm64]
+    ignore:
+      - goos: windows
+        goarch: arm64
+    ldflags:
+      - -s -w
+      - -X github.com/theinventor/sunflower-tasks-cli/cmd.Version={{.Version}}
+      - -X github.com/theinventor/sunflower-tasks-cli/cmd.Commit={{.Commit}}
+      - -X github.com/theinventor/sunflower-tasks-cli/cmd.BuildDate={{.Date}}
+archives:
+  - name_template: 'sunflower-tasks_{{ .Version }}_{{ .Os }}_{{ .Arch }}'
+    formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    files: [LICENSE, README.md]
+checksum:
+  name_template: checksums.txt
+snapshot:
+  version_template: '{{ incpatch .Version }}-next'
+release:
+  github:
+    owner: theinventor
+    name: sunflower-tasks-cli
