@@ -43,7 +43,7 @@ For CI, use `SUNFLOWER_TASKS_API_KEY` and optionally `SUNFLOWER_TASKS_API_URL` a
 
 ## API calls
 
-The endpoint catalog documents all 106 operations currently exposed by `/api/mobile/v1`, including inventory counts, maintenance, cleanings, templates, account management, and notifications. `api request` is a forward-compatible escape hatch for new server endpoints:
+The endpoint catalog documents all 105 operations currently exposed by `/api/mobile/v1`, including inventory counts, maintenance, cleanings, templates, account management, and notifications. `api request` is a forward-compatible escape hatch for new server endpoints:
 
 ```sh
 sunflower-tasks api request GET /api/mobile/v1/properties
